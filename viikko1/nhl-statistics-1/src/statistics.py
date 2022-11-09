@@ -4,6 +4,11 @@
 def sort_by_points(player):
     return player.points
 
+def sort_by_goals(player):
+    return player.goals
+
+def sort_by_assists(player):
+    return player.assists
 
 class Statistics:
     def __init__(self, PlayerReader):
