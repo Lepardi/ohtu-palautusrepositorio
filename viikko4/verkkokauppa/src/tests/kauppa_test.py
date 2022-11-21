@@ -64,7 +64,7 @@ class TestKauppa(unittest.TestCase):
         kauppa.lisaa_koriin(1)
         kauppa.tilimaksu("pekka", "12345")
 
-        pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", "33333-44455", 5)
+        pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", kauppa._kaupan_tili, 5)
 
     def test_kahden_eri_tuotteen_ostoksen_paaytyttya_pankin_metodia_tilisiirto_kutsutaan_oikeilla_parametreilla(self):
         pankki_mock = Mock()
@@ -93,7 +93,7 @@ class TestKauppa(unittest.TestCase):
         kauppa.lisaa_koriin(2)
         kauppa.tilimaksu("pekka", "12345")
 
-        pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", "33333-44455", 15)
+        pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", kauppa._kaupan_tili, 15)
 
     def test_kahden_saman_tuotteen_ostoksen_paaytyttya_pankin_metodia_tilisiirto_kutsutaan_oikeilla_parametreilla(self):
         pankki_mock = Mock()
@@ -121,8 +121,8 @@ class TestKauppa(unittest.TestCase):
         kauppa.lisaa_koriin(1)
         kauppa.lisaa_koriin(1)
         kauppa.tilimaksu("pekka", "12345")
-
-        pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", "33333-44455", 10)
+        
+        pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", kauppa._kaupan_tili, 10)
 
     def test_loppuneen_tuotteen_ostoksen_paaytyttya_pankin_metodia_tilisiirto_kutsutaan_oikeilla_parametreilla(self):
         pankki_mock = Mock()
@@ -151,4 +151,4 @@ class TestKauppa(unittest.TestCase):
         kauppa.lisaa_koriin(2)
         kauppa.tilimaksu("pekka", "12345")
 
-        pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", "33333-44455", 5)
+        pankki_mock.tilisiirto.assert_called_with("pekka", 42, "12345", kauppa._kaupan_tili, 5)
